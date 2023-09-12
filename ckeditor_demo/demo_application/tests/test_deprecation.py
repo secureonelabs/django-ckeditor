@@ -5,10 +5,9 @@ from django.contrib.auth.models import User
 from django.test import RequestFactory, SimpleTestCase, TestCase
 from django.test.utils import override_settings
 
+from ckeditor_demo.demo_application.tests.utils import get_absolute_name
 from ckeditor_uploader import backends
 from ckeditor_uploader.views import get_upload_filename
-
-from .utils import get_absolute_name
 
 
 MOCK_FILENAME = "some_filename.jpg"

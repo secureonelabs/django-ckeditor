@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from . import models
+from ckeditor_demo.demo_application import models
 
 
 admin.site.register(models.ExampleModel)

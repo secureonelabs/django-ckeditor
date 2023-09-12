@@ -1,18 +1,17 @@
+import contextlib
 import warnings
 
 from django.conf import settings
 from django.utils.module_loading import import_string
 
-from .dummy_backend import DummyBackend
+from ckeditor_uploader.backends.dummy_backend import DummyBackend
 
 
 __all__ = ["get_backend", "DummyBackend", "PillowBackend"]
 
 
-try:
-    from .pillow_backend import PillowBackend
-except ImportError:
-    pass
+with contextlib.suppress(ImportError):
+    from ckeditor_uploader.backends.pillow_backend import PillowBackend
 
 
 # Allow for a custom image backend defined in settings.

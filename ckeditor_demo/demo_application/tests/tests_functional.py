@@ -9,7 +9,11 @@ from django.test.utils import override_settings
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-from .utils import get_upload_directory, remove_upload_directory, sha1
+from ckeditor_demo.demo_application.tests.utils import (
+    get_upload_directory,
+    remove_upload_directory,
+    sha1,
+)
 
 
 CHROMIUM = "chromium"

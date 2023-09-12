@@ -6,14 +6,13 @@ from django.urls import reverse
 
 from ckeditor.fields import RichTextFormField
 from ckeditor.widgets import CKEditorWidget
-from ckeditor_uploader.fields import RichTextUploadingFormField
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
-
-from ..forms import (
+from ckeditor_demo.demo_application.forms import (
     ExampleModelForm,
     ExampleModelOverriddenWidgetForm,
     ExampleNonUploadModelForm,
 )
+from ckeditor_uploader.fields import RichTextUploadingFormField
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class ModelFieldAndFormFieldTestCase(TestCase):

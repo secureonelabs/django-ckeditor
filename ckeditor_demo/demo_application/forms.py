@@ -2,11 +2,10 @@ from django import forms
 
 from ckeditor.fields import RichTextFormField
 from ckeditor.widgets import CKEditorWidget
+from ckeditor_demo.demo_application.models import ExampleModel, ExampleNonUploadModel
+from ckeditor_demo.demo_application.widgets import CkEditorMultiWidget
 from ckeditor_uploader.fields import RichTextUploadingFormField
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
-
-from .models import ExampleModel, ExampleNonUploadModel
-from .widgets import CkEditorMultiWidget
 
 
 class CkEditorForm(forms.Form):

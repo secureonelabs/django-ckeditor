@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.views import generic
 
-from . import forms
+from ckeditor_demo.demo_application import forms
 
 
 class CkEditorFormView(generic.FormView):

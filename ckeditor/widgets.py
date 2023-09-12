@@ -9,7 +9,7 @@ from django.utils.functional import Promise
 from django.utils.translation import get_language
 from js_asset import JS
 
-from .configs import DEFAULT_CONFIG
+from ckeditor.configs import DEFAULT_CONFIG
 
 
 class LazyEncoder(DjangoJSONEncoder):
@@ -101,7 +101,7 @@ class CKEditorWidget(forms.Textarea):
                     },
                 ),
                 "ckeditor/ckeditor/ckeditor.js",
-            )
+            ),
         )
 
     def get_context(self, name, value, attrs):

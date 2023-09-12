@@ -1,6 +1,5 @@
 from ckeditor import fields
-
-from . import widgets
+from ckeditor_uploader import widgets
 
 
 class RichTextUploadingField(fields.RichTextField):

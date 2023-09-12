@@ -14,9 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 from ckeditor_uploader import utils
 from ckeditor_uploader.backends import get_backend
 from ckeditor_uploader.forms import SearchForm
-from ckeditor_uploader.utils import storage
-
-from .utils import is_valid_image_extension
+from ckeditor_uploader.utils import is_valid_image_extension, storage
 
 
 def _get_user_path(user):
@@ -28,12 +26,9 @@ def _get_user_path(user):
         try:
             user_prop = getattr(user, RESTRICT_BY_USER)
         except (AttributeError, TypeError):
-            user_prop = getattr(user, "get_username")
+            user_prop = user.get_username
 
-        if callable(user_prop):
-            user_path = user_prop()
-        else:
-            user_path = user_prop
+        user_path = user_prop() if callable(user_prop) else user_prop
 
     return str(user_path)
 
@@ -120,12 +115,10 @@ class ImageUploadView(generic.View):
         if ck_func_num:
             # Respond with Javascript sending ckeditor upload url.
             return HttpResponse(
-                """
+                f"""
             <script type='text/javascript'>
-                window.parent.CKEDITOR.tools.callFunction({}, '{}');
-            </script>""".format(
-                    ck_func_num, url
-                )
+                window.parent.CKEDITOR.tools.callFunction({ck_func_num}, '{url}');
+            </script>"""
             )
         else:
             _, filename = os.path.split(saved_path)
@@ -148,10 +141,7 @@ def get_image_files(user=None, path=""):
 
     # allow browsing from anywhere if user is superuser
     # otherwise use the user path
-    if user and not user.is_superuser:
-        user_path = _get_user_path(user)
-    else:
-        user_path = ""
+    user_path = _get_user_path(user) if user and not user.is_superuser else ""
 
     browse_path = os.path.join(settings.CKEDITOR_UPLOAD_PATH, user_path, path)
 
